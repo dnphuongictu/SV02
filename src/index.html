@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FocusMate AI - Baseline</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">DU AN NCKH SINH VIEN</p>
+      <h1>FocusMate AI</h1>
+      <p>Ghi phien hoc, giai thich quyet dinh nhac nghi va thu du lieu cho baseline.</p>
+    </div>
+    <span class="badge">Baseline v1.0</span>
+  </header>
+
+  <main>
+    <section class="stats" aria-label="Tong quan">
+      <article><span>So phien</span><strong id="totalSessions">0</strong></article>
+      <article><span>Tong thoi gian</span><strong id="totalMinutes">0 phut</strong></article>
+      <article><span>Da goi y nghi</span><strong id="suggestionRate">0%</strong></article>
+      <article><span>Chap nhan</span><strong id="acceptanceRate">Chua co</strong></article>
+    </section>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>1. Ghi mot phien hoc</h2>
+        <p class="hint">Nhap du lieu gia lap truoc khi thu voi nguoi tham gia.</p>
+        <form id="sessionForm">
+          <label>Ma sinh vien (an danh)
+            <input id="studentCode" value="SV01" pattern="[A-Za-z0-9_-]+" required>
+          </label>
+          <label>Mon hoc
+            <input id="subject" value="Lap trinh Android" required>
+          </label>
+          <label>Loai nhiem vu
+            <select id="taskType">
+              <option value="reading">Doc tai lieu</option>
+              <option value="coding" selected>Lap trinh</option>
+              <option value="debugging">Sua loi</option>
+              <option value="writing">Viet bao cao</option>
+              <option value="exercise">Lam bai tap</option>
+            </select>
+          </label>
+          <div class="two-cols">
+            <label>Thoi luong (phut)
+              <input id="duration" type="number" min="5" max="240" value="50" required>
+            </label>
+            <label>Muc tap trung (1-5)
+              <input id="focusScore" type="number" min="1" max="5" value="3" required>
+            </label>
+          </div>
+          <div class="two-cols">
+            <label>Muc met (1-10)
+              <input id="fatigueScore" type="number" min="1" max="10" value="6" required>
+            </label>
+            <label>Ban co thuc su can nghi?
+              <select id="needBreak">
+                <option value="true">Co</option>
+                <option value="false">Khong</option>
+              </select>
+            </label>
+          </div>
+          <label>Neu he thong goi y, ban co chap nhan?
+            <select id="accepted">
+              <option value="">Chua hoi / khong ap dung</option>
+              <option value="true">Co</option>
+              <option value="false">Khong</option>
+            </select>
+          </label>
+          <button type="submit">Danh gia va luu phien</button>
+        </form>
+      </section>
+
+      <section class="panel decision-panel">
+        <h2>2. Quyet dinh co giai thich</h2>
+        <div id="decision" class="decision neutral">
+          <strong>Hay nhap mot phien hoc</strong>
+          <p>Ket qua baseline se xuat hien tai day.</p>
+        </div>
+        <h3>Bo luat v1.0</h3>
+        <ol>
+          <li>Goi y nghi neu hoc tu 45 phut va muc met tu 6.</li>
+          <li>Goi y nghi neu hoc tu 60 phut, bat ke muc met.</li>
+          <li>Goi y nghi neu muc met tu 8 va tap trung khong qua 3.</li>
+          <li>Sau mot lan tu choi, khong nhac lai trong 20 phut.</li>
+        </ol>
+        <p class="hint">Moi quyet dinh deu luu phien ban luat va ly do de co the tai lap thi nghiem.</p>
+      </section>
+    </div>
+
+    <section class="panel">
+      <div class="section-head">
+        <div><h2>3. Nhat ky du lieu</h2><p class="hint">Du lieu chi nam trong trinh duyet cua may nay.</p></div>
+        <div class="actions">
+          <button id="seedButton" class="secondary">Nap du lieu mau</button>
+          <button id="exportButton" class="secondary">Xuat CSV</button>
+          <button id="clearButton" class="danger">Xoa tat ca</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Thoi gian</th><th>Ma SV</th><th>Mon</th><th>Phut</th><th>Tap trung</th><th>Met</th><th>Can nghi</th><th>Quyet dinh</th><th>Chap nhan</th><th>Ly do</th></tr></thead>
+          <tbody id="sessionRows"></tbody>
+        </table>
+      </div>
+      <p id="emptyState" class="empty">Chua co du lieu. Hay nap bo mau hoac ghi phien dau tien.</p>
+    </section>
+  </main>
+
+  <footer>FocusMate AI · Du lieu an danh · Baseline truoc, AI sau</footer>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

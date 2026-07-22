@@ -1,0 +1,5 @@
+session_id,student_code,start_time,end_time,subject,task_type,focus_score,fatigue_score,need_break,break_suggested,accepted,rule_version,decision_reason,note
+FM001,SV01,2026-07-09T08:00:00,2026-07-09T08:45:00,Android,coding,4,5,false,false,,1.0,below_threshold,normal session
+FM002,SV01,2026-07-09T09:00:00,2026-07-09T10:05:00,Android,debugging,3,7,true,true,true,1.0,duration_and_fatigue,took 5 minute break
+FM003,SV02,2026-07-09T14:00:00,2026-07-09T14:30:00,AI,reading,5,3,false,false,,1.0,below_threshold,deep focus
+FM004,SV02,2026-07-09T14:35:00,2026-07-09T15:40:00,AI,writing,2,8,true,true,false,1.0,multiple_rules,deadline approaching

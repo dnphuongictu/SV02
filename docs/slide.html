@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Study Break - Slide đề tài</title>
+  <style>
+    :root {
+      --ink: #17212f;
+      --muted: #536170;
+      --line: #d9e0e7;
+      --bg: #f5f7fa;
+      --panel: #ffffff;
+      --accent: #28785f;
+      --accent-2: #f0b84f;
+      --soft: #eef8f3;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    .slide {
+      width: min(1280px, 100vw);
+      aspect-ratio: 16 / 9;
+      background: var(--panel);
+      display: grid;
+      grid-template-columns: .98fr 1.02fr;
+      gap: 36px;
+      padding: 54px 62px;
+      border: 1px solid var(--line);
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 52px;
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 20px 0 28px;
+      font-size: 22px;
+      line-height: 1.42;
+      color: var(--muted);
+    }
+    .problem {
+      border-left: 7px solid var(--accent);
+      background: var(--soft);
+      padding: 18px 20px;
+      font-size: 20px;
+      line-height: 1.38;
+      margin-bottom: 22px;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      padding: 9px 12px;
+      font-size: 16px;
+      font-weight: 700;
+      background: #fff;
+    }
+    .timeline {
+      border: 1px solid var(--line);
+      padding: 26px;
+      min-height: 356px;
+      background: #fbfcfd;
+    }
+    .bar {
+      height: 44px;
+      display: grid;
+      grid-template-columns: 2.4fr .7fr 1.5fr .7fr;
+      gap: 8px;
+      margin: 28px 0 20px;
+    }
+    .segment {
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      font-size: 16px;
+    }
+    .focus { background: var(--accent); }
+    .break { background: var(--accent-2); color: #34250c; }
+    .review { background: #39516b; }
+    .status {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      background: white;
+      padding: 16px;
+    }
+    .metric strong {
+      display: block;
+      font-size: 30px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .metric span {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      padding: 16px;
+      min-height: 108px;
+      background: #fff;
+    }
+    .card b { display: block; margin-bottom: 8px; font-size: 18px; }
+    .card span { color: var(--muted); font-size: 16px; line-height: 1.35; }
+    @media print {
+      body { background: white; }
+      .slide { border: 0; width: 100vw; }
+    }
+  </style>
+</head>
+<body>
+  <main class="slide">
+    <section>
+      <div class="eyebrow">Đề tài 02 · Học tập số · Quản lý gián đoạn</div>
+      <h1>Smart Study Break</h1>
+      <p class="subtitle">Ứng dụng nhắc nghỉ học thông minh, tránh nhắc sai thời điểm và giúp sinh viên duy trì nhịp học lành mạnh.</p>
+      <div class="problem">
+        Sinh viên học lâu trên màn hình dễ mệt, giảm tập trung; nhưng nhắc nghỉ tùy tiện lại làm gián đoạn phiên học sâu.
+      </div>
+      <div class="chips">
+        <span class="chip">Pomodoro thích nghi</span>
+        <span class="chip">Context rules</span>
+        <span class="chip">Không làm phiền</span>
+        <span class="chip">Biểu đồ thói quen</span>
+      </div>
+    </section>
+    <section>
+      <div class="timeline">
+        <h2 style="margin:0;font-size:28px;">Luồng trải nghiệm</h2>
+        <div class="bar">
+          <div class="segment focus">Tập trung</div>
+          <div class="segment break">Nghỉ</div>
+          <div class="segment review">Ôn tập</div>
+          <div class="segment break">Nghỉ</div>
+        </div>
+        <div class="status">
+          <div class="metric"><strong>50'</strong><span>Phiên học</span></div>
+          <div class="metric"><strong>7/10</strong><span>Mức mệt</span></div>
+          <div class="metric"><strong>0</strong><span>Lần nhắc sai</span></div>
+        </div>
+        <div class="grid">
+          <div class="card"><b>Sản phẩm</b><span>App/web ghi phiên học, tự nhắc nghỉ và thống kê theo ngày.</span></div>
+          <div class="card"><b>Quy tắc</b><span>Học lâu + mệt cao thì nhắc; đang tập trung sâu thì trì hoãn.</span></div>
+          <div class="card"><b>Kế thừa</b><span>Ý tưởng cognitive load, context reasoning và notification deferral.</span></div>
+          <div class="card"><b>Đầu ra</b><span>Ứng dụng demo, dữ liệu phiên học, báo cáo thử nghiệm với sinh viên.</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

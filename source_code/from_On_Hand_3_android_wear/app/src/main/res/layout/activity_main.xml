@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Wear OS round screen layout for CogLoad ACC-only demo -->
+<androidx.wear.widget.BoxInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        app:boxedEdges="all">
+
+        <!-- Predicted mental workload label -->
+        <TextView
+            android:id="@+id/tv_workload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COLLECTING..."
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <!-- Confidence -->
+        <TextView
+            android:id="@+id/tv_confidence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="--"
+            android:textColor="#AAFFAA"
+            android:textSize="14sp"
+            android:gravity="center"/>
+
+        <!-- Latency -->
+        <TextView
+            android:id="@+id/tv_latency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="-- ms"
+            android:textColor="#888888"
+            android:textSize="10sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</androidx.wear.widget.BoxInsetLayout>

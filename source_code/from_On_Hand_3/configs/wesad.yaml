@@ -1,0 +1,16 @@
+dataset:
+  name: wesad
+  role: stress_proxy
+  data_dir: data/raw/wesad
+  label_scheme: stress_binary
+window:
+  seconds: 60
+  step_seconds: 30
+  minimum_label_purity: 0.8
+features:
+  minimum_frequency_duration_seconds: 120
+  minimum_valid_rr: 10
+evaluation:
+  protocol: loso
+  random_seed: 42
+  primary_metric: macro_f1
