@@ -1,0 +1,24 @@
+name: Nhiệm vụ nghiên cứu
+description: Đề xuất thí nghiệm có giả thuyết và lệnh tái lập.
+title: "[Research] "
+labels: [research]
+body:
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Câu hỏi và giả thuyết
+    validations:
+      required: true
+  - type: textarea
+    id: protocol
+    attributes:
+      label: Dữ liệu, split và metric
+      description: Nêu input/version; không random split từng dòng.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Config và lệnh tái lập
+    validations:
+      required: true

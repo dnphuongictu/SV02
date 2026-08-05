@@ -1,116 +1,202 @@
 <!doctype html>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <html lang="vi">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FocusMate AI - Baseline</title>
+  <meta name="theme-color" content="#186a55">
+  <meta name="description" content="Trợ lý phiên học local-first, gợi ý nghỉ có giải thích và tôn trọng sự tập trung.">
+  <title>FocusMate AI</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/focusmate.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="hero">
     <div>
-      <p class="eyebrow">DU AN NCKH SINH VIEN</p>
+      <p class="eyebrow">TRỢ LÝ PHIÊN HỌC LOCAL-FIRST</p>
       <h1>FocusMate AI</h1>
-      <p>Ghi phien hoc, giai thich quyet dinh nhac nghi va thu du lieu cho baseline.</p>
+      <p>Một bộ hẹn giờ biết khi nào nên im lặng — gợi ý nghỉ có lý do, không thu nội dung học.</p>
     </div>
-    <span class="badge">Baseline v1.0</span>
+    <div class="hero-actions">
+      <span id="networkStatus" class="badge">Đang kiểm tra kết nối</span>
+      <button id="installButton" class="install-button" hidden>Cài ứng dụng</button>
+      <span class="badge">Rule v1.0</span>
+    </div>
   </header>
 
   <main>
-    <section class="stats" aria-label="Tong quan">
-      <article><span>So phien</span><strong id="totalSessions">0</strong></article>
-      <article><span>Tong thoi gian</span><strong id="totalMinutes">0 phut</strong></article>
-      <article><span>Da goi y nghi</span><strong id="suggestionRate">0%</strong></article>
-      <article><span>Chap nhan</span><strong id="acceptanceRate">Chua co</strong></article>
+    <section class="stats" aria-label="Tổng quan">
+      <article><span>Số phiên</span><strong id="totalSessions">0</strong></article>
+      <article><span>Tổng thời gian</span><strong id="totalMinutes">0 phút</strong></article>
+      <article><span>Đã gợi ý nghỉ</span><strong id="suggestionRate">0%</strong></article>
+      <article><span>Chấp nhận</span><strong id="acceptanceRate">Chưa có</strong></article>
+    </section>
+
+    <section id="evaluationPanel" class="panel evaluation-panel" hidden aria-labelledby="evaluationTitle">
+      <div class="section-head">
+        <div>
+          <p class="step">ĐÁNH GIÁ BASELINE</p>
+          <h2 id="evaluationTitle">Fixed-45 so với Rule v1 (không replay cooldown)</h2>
+          <p id="evaluationDataNote" class="hint"></p>
+        </div>
+        <span class="privacy-pill">Cùng một tập dữ liệu</span>
+      </div>
+      <div class="evaluation-grid">
+        <article class="metric-card">
+          <h3>Fixed-45</h3>
+          <dl>
+            <div><dt>Precision</dt><dd id="fixedPrecision">-</dd></div>
+            <div><dt>Recall</dt><dd id="fixedRecall">-</dd></div>
+            <div><dt>F1</dt><dd id="fixedF1">-</dd></div>
+            <div><dt>Balanced accuracy</dt><dd id="fixedBalanced">-</dd></div>
+          </dl>
+        </article>
+        <article class="metric-card featured">
+          <h3>Rule v1 context</h3>
+          <dl>
+            <div><dt>Precision</dt><dd id="rulePrecision">-</dd></div>
+            <div><dt>Recall</dt><dd id="ruleRecall">-</dd></div>
+            <div><dt>F1</dt><dd id="ruleF1">-</dd></div>
+            <div><dt>Balanced accuracy</dt><dd id="ruleBalanced">-</dd></div>
+          </dl>
+        </article>
+      </div>
+      <div class="table-wrap compact-table">
+        <table aria-label="Confusion matrix theo phương pháp">
+          <thead><tr><th>Phương pháp</th><th>TP</th><th>FP</th><th>TN</th><th>FN</th><th>Số lời nhắc</th></tr></thead>
+          <tbody>
+            <tr><td>Fixed-45</td><td id="fixedTp">0</td><td id="fixedFp">0</td><td id="fixedTn">0</td><td id="fixedFn">0</td><td id="fixedSuggestions">0</td></tr>
+            <tr><td>Rule v1 context</td><td id="ruleTp">0</td><td id="ruleFp">0</td><td id="ruleTn">0</td><td id="ruleFn">0</td><td id="ruleSuggestions">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint compact">Bảng này đánh giá lại hai baseline từ `need_break`; không dùng `break_suggested` làm nhãn đúng.</p>
     </section>
 
     <div class="grid">
-      <section class="panel">
-        <h2>1. Ghi mot phien hoc</h2>
-        <p class="hint">Nhap du lieu gia lap truoc khi thu voi nguoi tham gia.</p>
-        <form id="sessionForm">
-          <label>Ma sinh vien (an danh)
-            <input id="studentCode" value="SV01" pattern="[A-Za-z0-9_-]+" required>
+      <section class="panel timer-panel" aria-labelledby="timerTitle">
+        <div class="section-head">
+          <div>
+            <p class="step">BƯỚC 1</p>
+            <h2 id="timerTitle">Bắt đầu phiên học</h2>
+          </div>
+          <span class="privacy-pill">Dữ liệu trên thiết bị</span>
+        </div>
+
+        <form id="timerSetupForm">
+          <label>Mã người học ẩn danh
+            <input id="studentCode" value="SV01" pattern="[A-Za-z0-9_-]+" autocomplete="off" required>
           </label>
-          <label>Mon hoc
-            <input id="subject" value="Lap trinh Android" required>
+          <label>Môn học hoặc chủ đề
+            <input id="subject" value="Lập trình Android" autocomplete="off" required>
           </label>
-          <label>Loai nhiem vu
+          <label>Loại nhiệm vụ
             <select id="taskType">
-              <option value="reading">Doc tai lieu</option>
-              <option value="coding" selected>Lap trinh</option>
-              <option value="debugging">Sua loi</option>
-              <option value="writing">Viet bao cao</option>
-              <option value="exercise">Lam bai tap</option>
+              <option value="reading">Đọc tài liệu</option>
+              <option value="coding" selected>Lập trình</option>
+              <option value="debugging">Sửa lỗi</option>
+              <option value="writing">Viết báo cáo</option>
+              <option value="exercise">Làm bài tập</option>
             </select>
           </label>
-          <div class="two-cols">
-            <label>Thoi luong (phut)
-              <input id="duration" type="number" min="5" max="240" value="50" required>
-            </label>
-            <label>Muc tap trung (1-5)
-              <input id="focusScore" type="number" min="1" max="5" value="3" required>
-            </label>
+          <label>Mục tiêu của phiên (không bắt buộc)
+            <input id="sessionGoal" maxlength="120" placeholder="Ví dụ: hoàn thành màn hình đăng nhập">
+          </label>
+          <button type="submit">Bắt đầu tập trung</button>
+        </form>
+
+        <div id="timerWorkspace" class="timer-workspace" hidden>
+          <p id="activeSessionMeta" class="active-session-meta"></p>
+          <output id="timerDisplay" class="timer-display" aria-live="off">00:00:00</output>
+          <p id="timerStatus" class="timer-status" role="status">Đang tập trung</p>
+          <div class="timer-actions">
+            <button id="pauseButton" class="secondary" type="button">Tạm dừng</button>
+            <button id="resumeButton" type="button" hidden>Tiếp tục</button>
+            <button id="finishButton" class="danger" type="button">Kết thúc phiên</button>
           </div>
-          <div class="two-cols">
-            <label>Muc met (1-10)
-              <input id="fatigueScore" type="number" min="1" max="10" value="6" required>
+          <p class="hint compact">Bạn có thể đóng hoặc tải lại trang; bộ đếm sẽ được khôi phục.</p>
+        </div>
+
+        <section id="feedbackPanel" class="feedback-panel" hidden aria-labelledby="feedbackTitle">
+          <p class="step">BƯỚC 2</p>
+          <h3 id="feedbackTitle">Phản hồi sau phiên</h3>
+          <p class="hint">Nhãn “cần nghỉ” là câu trả lời độc lập của bạn, không phải dự đoán của hệ thống.</p>
+          <form id="feedbackForm">
+            <label>Thời lượng ghi nhận (phút)
+              <input id="duration" type="number" min="5" max="240" readonly>
             </label>
-            <label>Ban co thuc su can nghi?
+            <div class="two-cols">
+              <label>Mức tập trung (1-5)
+                <input id="focusScore" type="number" min="1" max="5" value="3" required>
+              </label>
+              <label>Mức mệt (1-10)
+                <input id="fatigueScore" type="number" min="1" max="10" value="6" required>
+              </label>
+            </div>
+            <label>Bạn có thực sự cần nghỉ lúc này?
               <select id="needBreak">
-                <option value="true">Co</option>
-                <option value="false">Khong</option>
+                <option value="true">Có</option>
+                <option value="false">Không</option>
               </select>
             </label>
-          </div>
-          <label>Neu he thong goi y, ban co chap nhan?
-            <select id="accepted">
-              <option value="">Chua hoi / khong ap dung</option>
-              <option value="true">Co</option>
-              <option value="false">Khong</option>
-            </select>
-          </label>
-          <button type="submit">Danh gia va luu phien</button>
-        </form>
+            <label>Ghi chú không nhạy cảm (không bắt buộc)
+              <input id="note" maxlength="160" placeholder="Ví dụ: đang gần hoàn thành bài tập">
+            </label>
+            <button type="submit">Đánh giá và lưu phiên</button>
+          </form>
+        </section>
       </section>
 
-      <section class="panel decision-panel">
-        <h2>2. Quyet dinh co giai thich</h2>
-        <div id="decision" class="decision neutral">
-          <strong>Hay nhap mot phien hoc</strong>
-          <p>Ket qua baseline se xuat hien tai day.</p>
+      <section class="panel decision-panel" aria-labelledby="decisionTitle">
+        <p class="step">BƯỚC 3</p>
+        <h2 id="decisionTitle">Quyết định có giải thích</h2>
+        <div id="decision" class="decision neutral" aria-live="polite">
+          <strong>Chưa có quyết định</strong>
+          <p>Hoàn thành một phiên và gửi phản hồi để chạy bộ luật.</p>
         </div>
-        <h3>Bo luat v1.0</h3>
+        <div id="decisionActions" class="decision-actions" hidden>
+          <button id="acceptSuggestion" type="button">Tôi sẽ nghỉ</button>
+          <button id="rejectSuggestion" class="secondary" type="button">Để sau</button>
+        </div>
+        <h3>Bộ luật v1.0</h3>
         <ol>
-          <li>Goi y nghi neu hoc tu 45 phut va muc met tu 6.</li>
-          <li>Goi y nghi neu hoc tu 60 phut, bat ke muc met.</li>
-          <li>Goi y nghi neu muc met tu 8 va tap trung khong qua 3.</li>
-          <li>Sau mot lan tu choi, khong nhac lai trong 20 phut.</li>
+          <li>Gợi ý nghỉ nếu học từ 45 phút và mức mệt từ 6.</li>
+          <li>Gợi ý nghỉ nếu học từ 60 phút, bất kể mức mệt.</li>
+          <li>Gợi ý nghỉ nếu mức mệt từ 8 và tập trung không quá 3.</li>
+          <li>Sau một lần từ chối, không nhắc lại trong 20 phút.</li>
         </ol>
-        <p class="hint">Moi quyet dinh deu luu phien ban luat va ly do de co the tai lap thi nghiem.</p>
+        <p class="hint">Mọi quyết định lưu phiên bản luật và lý do để có thể tái lập.</p>
       </section>
     </div>
 
     <section class="panel">
       <div class="section-head">
-        <div><h2>3. Nhat ky du lieu</h2><p class="hint">Du lieu chi nam trong trinh duyet cua may nay.</p></div>
+        <div>
+          <p class="step">DỮ LIỆU</p>
+          <h2>Nhật ký phiên học</h2>
+          <p class="hint">Dữ liệu chỉ nằm trong trình duyệt của máy này.</p>
+        </div>
         <div class="actions">
-          <button id="seedButton" class="secondary">Nap du lieu mau</button>
-          <button id="exportButton" class="secondary">Xuat CSV</button>
-          <button id="clearButton" class="danger">Xoa tat ca</button>
+          <button id="seedButton" class="secondary" type="button">Nạp dữ liệu mẫu</button>
+          <button id="importButton" class="secondary" type="button">Nhập CSV</button>
+          <input id="importFile" type="file" accept=".csv,text/csv" hidden>
+          <button id="exportButton" class="secondary" type="button">Xuất CSV</button>
+          <button id="clearButton" class="danger" type="button">Xóa tất cả</button>
         </div>
       </div>
+      <p id="importStatus" class="import-status" role="status" hidden></p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Thoi gian</th><th>Ma SV</th><th>Mon</th><th>Phut</th><th>Tap trung</th><th>Met</th><th>Can nghi</th><th>Quyet dinh</th><th>Chap nhan</th><th>Ly do</th></tr></thead>
+          <thead><tr><th>Thời gian</th><th>Mã</th><th>Môn</th><th>Phút</th><th>Tập trung</th><th>Mệt</th><th>Cần nghỉ</th><th>Quyết định</th><th>Chấp nhận</th><th>Lý do</th></tr></thead>
           <tbody id="sessionRows"></tbody>
         </table>
       </div>
-      <p id="emptyState" class="empty">Chua co du lieu. Hay nap bo mau hoac ghi phien dau tien.</p>
+      <p id="emptyState" class="empty">Chưa có dữ liệu. Hãy chạy phiên đầu tiên hoặc nạp bộ mẫu.</p>
     </section>
   </main>
 
-  <footer>FocusMate AI · Du lieu an danh · Baseline truoc, AI sau</footer>
+  <footer>FocusMate AI · Local-first · Có thể xuất và xóa dữ liệu · Baseline trước, AI sau</footer>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

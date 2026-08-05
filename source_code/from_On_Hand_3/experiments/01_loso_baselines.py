@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Run subject-independent SVM/MLP baselines."""
 
 from __future__ import annotations

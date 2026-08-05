@@ -1,3 +1,5 @@
+﻿# SPDX-License-Identifier: Apache-2.0
+
 """Create synchronized raw BVP/ACC windows for CNN experiments."""
 
 from __future__ import annotations

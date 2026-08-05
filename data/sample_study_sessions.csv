@@ -1,5 +1,5 @@
-session_id,student_code,start_time,end_time,subject,task_type,focus_score,fatigue_score,need_break,break_suggested,accepted,rule_version,decision_reason,note
-FM001,SV01,2026-07-09T08:00:00,2026-07-09T08:45:00,Android,coding,4,5,false,false,,1.0,below_threshold,normal session
-FM002,SV01,2026-07-09T09:00:00,2026-07-09T10:05:00,Android,debugging,3,7,true,true,true,1.0,duration_and_fatigue,took 5 minute break
-FM003,SV02,2026-07-09T14:00:00,2026-07-09T14:30:00,AI,reading,5,3,false,false,,1.0,below_threshold,deep focus
-FM004,SV02,2026-07-09T14:35:00,2026-07-09T15:40:00,AI,writing,2,8,true,true,false,1.0,multiple_rules,deadline approaching
+session_id,start_time,end_time,student_code,subject,task_type,goal,duration_minutes,focus_score,fatigue_score,need_break,break_suggested,accepted,response_time,risk_score,rule_version,decision_reason,note
+FM001,2026-07-09T08:00:00,2026-07-09T08:45:00,SV01,Android,coding,Hoan thanh man hinh dang nhap,45,4,5,false,false,,,71,1.0,Chua cham nguong cua bo luat v1.0,Du lieu synthetic
+FM002,2026-07-09T09:00:00,2026-07-09T10:05:00,SV01,Android,debugging,Sua loi luu trang thai,65,3,7,true,true,true,2026-07-09T10:06:00,100,1.0,hoc lien tuc >= 60 phut,Du lieu synthetic
+FM003,2026-07-09T14:00:00,2026-07-09T14:30:00,SV02,AI,reading,Doc mot chuong tai lieu,30,5,3,false,false,,,44,1.0,Chua cham nguong cua bo luat v1.0,Du lieu synthetic
+FM004,2026-07-09T14:35:00,2026-07-09T15:40:00,SV02,AI,writing,Viet phan phuong phap,65,2,8,true,true,false,2026-07-09T15:41:00,100,1.0,hoc >= 45 phut va met >= 6; hoc lien tuc >= 60 phut; met >= 8 va tap trung <= 3,Du lieu synthetic

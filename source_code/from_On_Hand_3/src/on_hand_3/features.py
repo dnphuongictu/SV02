@@ -1,3 +1,5 @@
+﻿# SPDX-License-Identifier: Apache-2.0
+
 """Feature extraction for wrist BVP-derived intervals and accelerometry."""
 
 from __future__ import annotations

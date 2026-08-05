@@ -1,0 +1,28 @@
+name: Đề xuất tính năng
+description: Đề xuất thay đổi có tiêu chí nghiệm thu và tác động dữ liệu rõ ràng.
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Vấn đề người dùng
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Tiêu chí nghiệm thu
+    validations:
+      required: true
+  - type: dropdown
+    id: data
+    attributes:
+      label: Có thay đổi schema/dữ liệu không?
+      options: [Không, Có, Chưa rõ]
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Privacy, phương pháp hoặc license

@@ -1,30 +1,43 @@
+# SPDX-License-Identifier: Apache-2.0
+
+# Dependencies and build output
+node_modules/
+dist/
+build/
+.gradle/
+*.apk
+*.aab
+
+# Local caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.DS_Store
+Thumbs.db
+
+# IDE and local configuration
+.idea/
+.vscode/
+local.properties
 .env
 .env.*
 !.env.example
-local.properties
-*.key
-*.pem
-*.p12
-*.jks
-*.keystore
-.gradle/
-.idea/
-.vscode/
-.venv/
-venv/
-node_modules/
-.next/
-build/
-dist/
-__pycache__/
-.pytest_cache/
-*.py[cod]
-*.apk
-*.aab
-*.gguf
-*.safetensors
-*.tflite
-*.onnx
-*.pt
-*.pth
 
+# Pilot and exported data: never commit participant-level files
+data/weekly_logs/**
+!data/weekly_logs/.gitkeep
+data/exports/**
+!data/exports/.gitkeep
+data_local/
+
+# Temporary handoff build directory
+demo/handoff_build/
+
+# Local/internal handoff packages: publish separately after verification
+demo/*.zip
+demo/*.zip.sha256
+
+# Reference artefacts that require a distribution-rights audit
+docs/papers/*.pdf
+models/from_*/

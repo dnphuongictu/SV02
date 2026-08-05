@@ -1,3 +1,5 @@
+﻿# SPDX-License-Identifier: Apache-2.0
+
 """WAUC adapter — genuine MATB-II mental-workload ground truth (not a stress proxy).
 
 Each subject recorded 6 MATB-II sessions (`info == "session"` rows in the raw

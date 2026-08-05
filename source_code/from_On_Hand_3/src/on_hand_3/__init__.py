@@ -1,3 +1,5 @@
+﻿# SPDX-License-Identifier: Apache-2.0
+
 """On_Hand_3 physiological sensing research utilities."""
 
 __version__ = "0.1.0"

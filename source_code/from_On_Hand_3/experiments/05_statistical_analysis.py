@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Post-hoc statistical rigor pass over already-trained LOSO artifacts.
 
 Adds, without retraining anything: bootstrap confidence intervals over

@@ -1,0 +1,30 @@
+name: Báo lỗi
+description: Báo hành vi có thể tái hiện, không kèm PII hoặc dữ liệu pilot.
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: Hiện tượng
+      description: Điều đã xảy ra và điều mong đợi.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Cách tái hiện tối thiểu
+      description: Dùng dữ liệu synthetic/ẩn danh; không đính kèm PII.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Môi trường
+      placeholder: Windows 11, Chrome 140, Node 22
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Log hoặc ảnh đã làm sạch

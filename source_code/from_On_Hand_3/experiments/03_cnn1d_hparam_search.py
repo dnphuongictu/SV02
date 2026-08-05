@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Hyperparameter search for the raw-signal CNN1D, selected on validation folds only.
 
 Model selection here never looks at test-fold metrics: for each candidate

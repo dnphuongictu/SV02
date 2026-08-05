@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Export synchronized WAUC PPG/ACC windows for raw-signal CNNs."""
 
 from __future__ import annotations

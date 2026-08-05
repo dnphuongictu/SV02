@@ -1,0 +1,7 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="FocusMate AI">
+  <rect width="512" height="512" rx="112" fill="#186a55"/>
+  <circle cx="256" cy="256" r="156" fill="#f5f7f2"/>
+  <path d="M256 138v118l78 49" fill="none" stroke="#186a55" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M154 383c30-32 61-48 102-48s72 16 102 48" fill="none" stroke="#e6a33b" stroke-width="26" stroke-linecap="round"/>
+</svg>

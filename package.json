@@ -2,8 +2,17 @@
   "name": "focusmate-ai-baseline",
   "version": "1.0.0",
   "private": true,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dnphuongictu/SV02.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dnphuongictu/SV02/issues"
+  },
   "type": "module",
   "scripts": {
-    "test": "node --test tests/ruleEngine.test.mjs"
+    "test": "node tests/all.test.mjs",
+    "verify": "npm test"
   }
 }

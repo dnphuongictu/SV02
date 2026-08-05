@@ -1,3 +1,5 @@
+﻿# SPDX-License-Identifier: Apache-2.0
+
 """Export the trained WAUC ACC-only MLP (sklearn Pipeline) to a plain JSON
 weight file so it can be re-implemented as a hand-written forward pass in
 Kotlin, with no TFLite/ONNX dependency.

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 export const RULE_VERSION = "1.0";
 export const COOLDOWN_MINUTES = 20;
 

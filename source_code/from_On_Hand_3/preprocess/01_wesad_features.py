@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Convert extracted WESAD subjects into a leakage-safe feature table."""
 
 from __future__ import annotations

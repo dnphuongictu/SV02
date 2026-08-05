@@ -1,3 +1,5 @@
+﻿# SPDX-License-Identifier: Apache-2.0
+
 # Run WAUC CNN1D hyperparameter search (early-fusion + late-fusion) on a GPU.
 #
 # Status as of 2026-07-04: the modality ablation (both/HRV-only/ACC-only, all

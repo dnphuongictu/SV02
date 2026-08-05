@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Train raw BVP/ACC CNN1D with LOSO and evaluate sequential T3A."""
 
 from __future__ import annotations

@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Compare on-device (Pixel Watch 2) ACC feature distributions against the
 WAUC training distribution, to give quantitative evidence for the
 accelerometer unit-conversion fix in `android_wear/.../AccCollector.kt`

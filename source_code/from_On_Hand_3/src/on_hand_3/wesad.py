@@ -1,3 +1,5 @@
+﻿# SPDX-License-Identifier: Apache-2.0
+
 """WESAD adapter with explicit stress-proxy semantics."""
 
 from __future__ import annotations

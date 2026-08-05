@@ -1,3 +1,5 @@
+﻿# SPDX-License-Identifier: Apache-2.0
+
 """LOSO training loop for the raw-signal CNN1D and sequential T3A evaluation."""
 
 from __future__ import annotations

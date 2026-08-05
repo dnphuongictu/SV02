@@ -1,3 +1,5 @@
+﻿# SPDX-License-Identifier: Apache-2.0
+
 """Small PyTorch models; imported only when the optional torch extra is installed."""
 
 from __future__ import annotations

@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Confound-controlled WAUC baselines: residualize each physiological feature
 against session-structure metadata (session_no, pw_label) before
 classification.

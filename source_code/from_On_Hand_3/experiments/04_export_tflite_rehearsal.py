@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+
 """Phase 3 deployment REHEARSAL: export the raw-signal CNN1D to TFLite and
 compare FP32 vs full-INT8 on desktop.
 

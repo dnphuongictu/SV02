@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "FocusMate AI",
+  "short_name": "FocusMate",
+  "description": "Trợ lý phiên học local-first với gợi ý nghỉ có giải thích.",
+  "license": "Apache-2.0",
+  "lang": "vi",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7f2",
+  "theme_color": "#186a55",
+  "icons": [
+    {
+      "src": "icons/focusmate.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
